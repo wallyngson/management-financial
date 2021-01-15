@@ -1,45 +1,84 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dev.finances$</title>
+    <title>dev.finance$</title>
+
+    <link rel="stylesheet" href="./styles.css">
 </head>
+
 <body>
-    
-    <h1>dev.finances$</h1>
 
-    <h2>Balanço</h2>
+    <header>
+        <h1 id="logo">dev.finances$</h1>
+    </header>
 
-    <h3>Entradas</h3>
-    <p>R$5.000,00</p>
+    <main>
 
-    <h3>Saídas</h3>
-    <p>R$3.000,00</p>
+        <section id="balance">
+            <h2>Balanço</h2>
 
-    <h3>Total</h3>
-    <p>R$2.000,00</p>
+            <div class="card">
+                <h3>Entradas</h3>
+                <p>R$5.000,00</p>
+            </div>
 
-    <h2>Transações</h2>
+            <div class="card">
+                <h3>Saídas</h3>
+                <p>R$3.000,00</p>
+            </div>
 
-    <table>
+            <div class="card">
+                <h3>Total</h3>
+                <p>R$2.000,00</p>
+            </div>
+        </section>
 
-        <thead>
-            <tr>
-                <th>Descrição</th>
-                <th>Valor</th>
-                <th>Data</th>
-            </tr>
-        </thead>
+        <section id="transaction">
+            <h2>Transações</h2>
 
-        <tbody>
-            <tr>
-                <td>Luz</td>
-                <td>- R$500,00</td>
-                <td>23/01/2021</td>
-            </tr>
-        </tbody>
-    </table>
+            <table id="data-table">
+                <thead>
+                    <tr>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+
+                <tbody id="transactions">
+                    <tr>
+                        <td>Luz</td>
+                        <td>- R$500,00</td>
+                        <td>23/01/2021</td>
+                    </tr>
+                    <tr>
+                        <td>Criação de Website</td>
+                        <td>R$5.000,00</td>
+                        <td>23/01/2021</td>
+                    </tr>
+                    <tr>
+                        <td>Internet</td>
+                        <td>- R$200,00</td>
+                        <td>23/01/2021</td>
+                    </tr>
+                    <tr>
+                        <td>Luz</td>
+                        <td>- R$500,00</td>
+                        <td>23/01/2021</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>dev.finances</p>
+    </footer>
 
 </body>
+
 </html>
