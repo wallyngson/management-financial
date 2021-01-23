@@ -209,9 +209,54 @@ td.description {
 
     position: relative;
     color: white;
+    box-shadow: 0 0 6em #251f38;
+    width: 90%;
+    max-width: 500px;
+}
+
+/* FORM ================ */
+
+#form {
+    max-width: 500px;
+}
+
+#form h2 {
+    margin-top: 0;
+}
+
+input {
+    border-radius: 0.5rem;
+    background-color: #111111;
+    border: none;
+
+    padding: 0.8rem;
+    width: 100%;
+    color: #d6d6d6;
+    
+}
+
+.input-group {
+    margin-top: 0.9rem;
 
 }
 
+.input-group  small{
+    opacity: 1;
+    color: #5b5a61;
+    margin-top: 0.9rem;
+}
+
+.input-group.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+::-webkit-input-placeholder {
+    color: #7c7c7c;
+    opacity: 50%;
+ }
+ 
 /* FOOTER ============== */
 
 footer {
