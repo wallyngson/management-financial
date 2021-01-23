@@ -48,6 +48,39 @@ a:hover {
     margin-bottom: .8rem;
 }
 
+.button.cancel {
+    border: 2px solid;
+    border-radius: 0.5rem;
+
+    width: 100%;
+    height: 45px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6rem;
+}
+
+button {
+    width: 100%;
+    height: 45px;
+
+    border: none;
+    color: white;
+    background-color: #583b96;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 1em #1b1629;
+
+    font-family: "Poppins";
+    font-weight: 400;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #8257e6;
+    color: #fff;
+}
+
 
 /* HEADER ============== */
 
@@ -209,9 +242,10 @@ td.description {
 
     position: relative;
     color: white;
-    box-shadow: 0 0 6em #251f38;
+    box-shadow: 0 0 4em #110e1b;
     width: 90%;
     max-width: 500px;
+    border-radius: 0.5rem;
 }
 
 /* FORM ================ */
@@ -231,16 +265,19 @@ input {
 
     padding: 0.8rem;
     width: 100%;
-    color: #d6d6d6;
-    
+    color: #d6d6d6;   
+}
+
+input:focus { /* QUANDO O INPUT ESTÁ SENDO FOCADO */
+    outline: none !important;
+    border:2px solid #583b96;
 }
 
 .input-group {
     margin-top: 0.9rem;
-
 }
 
-.input-group  small{
+.input-group small{
     opacity: 1;
     color: #5b5a61;
     margin-top: 0.9rem;
@@ -250,6 +287,11 @@ input {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.input-group.actions .button,
+.input-group.actions button {
+    width: 48%;
 }
 
 ::-webkit-input-placeholder {
