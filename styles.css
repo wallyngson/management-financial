@@ -2,6 +2,7 @@
 
 :root {
     --dark-blue: #363f5f;
+    --secundary-color: #8257e6;
 }
 
 * {
@@ -11,7 +12,7 @@
 }
 
 body {
-    background:  #f0f2f5;
+    background:  #1a191c;
     font-family: 'Poppins';
 }
 
@@ -23,17 +24,37 @@ body {
 h2 {
     margin-top: 3.2rem;
     margin-bottom: 0.8rem;
-    color: #363f5f;
+    color: rgb(255, 255, 255);
     font-weight: normal;
 }
+
+html {
+    font-size: 93.15%; /* 15px */
+}
+
+/* LINKS & BUTTONS =========*/
+
+a {
+    color: #583b96;
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--secundary-color)
+}
+
+.button.new {
+    display: inline-block;
+    margin-bottom: .8rem;
+}
+
 
 /* HEADER ============== */
 
 header {
-    background: #2d4a22;
+    background: #000000;
     padding: 2rem 0 10rem;
     text-align: center;
-
 }
 
 #logo {
@@ -52,19 +73,37 @@ header {
     margin-top: 0;
 }
 
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
 /* CARDS ================ */
 
 .card {
-    background-color: #ffffff;
+    background-color: #212025;
     padding: 1.5rem 2rem;
     border-radius: 1rem;
     margin-bottom: 1rem;
-    color: var(--dark-blue);
+    color: white;
+    box-shadow: 0 0 6em #1b1629;
 }
 
 .card h3 {
     font-weight: normal;
     font-size: 1rem;
+    color: #969cb3;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .card p {
@@ -73,28 +112,41 @@ header {
     margin-top: 1rem;
 }
 
-/* TABLE ============== */
 .card.total {
-    background: #49aa26;
+    background: var(--secundary-color);
     color: #fff;
 }
 
-table td {
-    background: #fff;
-    padding: 1rem 2rem;
-    font-weight: normal;
+/* TABLE ============== */
+
+#transaction {
+    
+    width: 100%;
+    overflow-x: auto;
 }
 
-table th {
-    background: #fff;
-    font-weight: normal;
-    padding: 1rem 2rem;
-    text-align: left;
+#data-table {
+    width: 100%;
+    border-spacing: 0 0.5rem;
+    color: #969cb3;
 }
+
 
 table thead tr th:first-child,
 table tbody tr td:first-child {
     border-radius: 0.25rem 0 0 0.25rem;
+}
+
+table thead tr th:last-child,
+table tbody tr td:last-child {
+    border-radius: 0 0.25rem 0.25rem 0;
+}
+
+table th {
+    background: #212025;
+    font-weight: normal;
+    padding: 1rem 2rem;
+    text-align: left;
 }
 
 table tr {
@@ -105,23 +157,59 @@ table tr:hover {
     opacity: 1;
 }
 
-#data-table {
-    width: 100%;
-    border-spacing: 0 0.5rem;
-    color: #969cb3;
-
+table td {
+    background: #212025;
+    padding: 1rem 2rem;
+    font-weight: normal;
 }
 
 .expense {
-    color: red
+    color: rgba(252, 34, 34, 0.726)
 }
 
 .income {
-    color: green
+    color: rgb(1, 161, 1)
 }
 
 td.description {
     color: var(da);
+}
+
+#total {
+    color: white;
+    font-weight: 400;
+}
+
+/* MODAL ============== */
+
+.modal-overlay {
+    width: 100%;
+    height: 100%;
+
+    background-color:rgba(0, 0, 0, 0.7);
+
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background-color: #1a191c;
+    padding: 2.4rem;
+
+    position: relative;
+    color: white;
+
 }
 
 /* FOOTER ============== */
@@ -131,4 +219,24 @@ footer {
     padding: 4rem 0 2rem;
     opacity: 0.7;
     font-style: italic;
+    font-weight: 300;
+    color: var(--secundary-color);
+    font-weight: 300;
+}
+
+
+/* RESPONSIVE ============ */
+
+@media (min-width: 800px) { /* Responsável pela responsibilidade... */ 
+    html {
+        font-size: 87.5%;
+    }
+
+    #balance {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* cada fração significa uma parte */
+        gap: 2rem;
+    }
+
+
 }
