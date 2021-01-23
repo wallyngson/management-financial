@@ -73,6 +73,7 @@ button {
 
     font-family: "Poppins";
     font-weight: 400;
+    font-size: 12ps;
     cursor: pointer;
 }
 
@@ -93,6 +94,7 @@ header {
 #logo {
     color: #fff;
     font-weight: 100;
+
 }
 
 /* BALANCE ============== */

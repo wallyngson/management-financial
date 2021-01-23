@@ -11,6 +11,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+    <script src="./index.js"></script>
 
 </head>
 
@@ -52,7 +53,10 @@
         <section id="transaction">
             <h2 class="sr-only">Transações</h2>
 
-            <a href="#" class="button new">+ Nova transação</a>
+            <a  href="#" 
+                onclick="modalChange.open()"
+                class="button new">+ Nova transação
+            </a>
 
             <table id="data-table">
                 <thead>
@@ -97,11 +101,11 @@
     </main>
 
     <footer>
-        <p>2020 - dev.finance$</p>
+        <p>2021 - dev.finance$</p>
         <p id="sub">Inspired by the colors of RocketSeat!</p>
     </footer>
 
-    <div class="modal-overlay active">
+    <div class="modal-overlay">
         <div class="modal">
             <div id="form">
                 <h2>Nova Transação</h2>
@@ -147,7 +151,12 @@
 
                     <div class="input-group">
                         <div class="input-group actions">
-                            <a href="#" class="button cancel">Cancelar</a>
+
+                            <a  href="#" 
+                                onclick="modalChange.close()"
+                                class="button cancel">Cancelar
+                            </a>
+
                             <button>Salvar</button>
                         </div>
                     </div>
