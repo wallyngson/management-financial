@@ -17,8 +17,21 @@
 
 <body>
 
-    <header>
+    <header class="header">
         <img src="./assets/logo.svg" alt="Logo Dev Finance">
+
+        <div id="checkbox-position">
+            <input  type="checkbox" 
+                    class="checkbox"
+                    id="checkbox"
+                    onclick="changeColor()">
+
+            <label for="checkbox" class="label">
+                <div class="ball"></div>
+            </label>
+
+        </div>
+
     </header>
 
     <main id="container">
@@ -46,7 +59,7 @@
                     <span>Total</span>
                     <img src="./assets/total.svg" alt="Image total">
                 </h3>
-                <p>R$2.000,00</p>
+                <p id="text-total">R$2.000,00</p>
             </div>
         </section>
 
@@ -102,7 +115,6 @@
 
     <footer>
         <p>2021 - dev.finance$</p>
-        <p id="sub">Inspired by the colors of RocketSeat!</p>
     </footer>
 
     <div class="modal-overlay">
