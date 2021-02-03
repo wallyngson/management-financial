@@ -66,6 +66,7 @@
 body {
     background: var(--body-color);
     font-family: 'Poppins';
+
 }
 
 #container {
@@ -93,6 +94,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background 0.2s linear;
     
 }
 header.dark {
