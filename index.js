@@ -25,21 +25,38 @@ const transactions = [
 
 const Transaction = {
   incomes() {
-    // somar as entradas
+    let income = 0
+
+    transactions.forEach(transaction => {
+      if (transaction.amount > 0) {
+        income += transaction.amount
+      }
+    })
+
+    return income
   },
 
   expenses() {
-    // somar as saídas
+    let expense = 0
+
+    transactions.forEach(transaction => {
+      if (transaction.amount < 0) {
+        expense += transaction.amount
+      }
+    })
+
+    return expense
   },
 
   total() {
-
+    return this.incomes() + this.expenses()
   }
 }
 
 const DOM = {
   transactionContainer: document.querySelector('#data-table tbody'),
 
+  // criando uma nova transação...
   addTransaction(transaction, index) {
     const tr = document.createElement('tr')
     tr.innerHTML = this.innerHTMLTransaction(transaction) 
@@ -48,14 +65,16 @@ const DOM = {
   },
 
   innerHTMLTransaction(transaction) {
+    // definido qual a cor para números negativos e positivos...
     const CSSclass = transaction.amount > 0 ? "income" : "expense"
 
-    // const amount = 
+    // chamando a função que formata o valor...
+    const amount = Utils.formatCurrency(transaction.amount)
 
     // criando uma máscara do HTML...
     const html = `
       <td class="description">${transaction.descrition}</td>
-      <td class=${CSSclass}>${transaction.amount}</td>
+      <td class=${CSSclass}>${amount}</td>
       <td class="date">${transaction.date}</td>
       <td>
         <img src="./assets/minus.svg" alt="">
@@ -63,12 +82,39 @@ const DOM = {
     `
 
     return html
+  },
+
+  // atualiza os valores de entrada, saída e o valor total...
+  updateBalance() {
+    document
+      .getElementById('incomeDisplay')
+      .innerHTML = Utils.formatCurrency(Transaction.incomes())
+
+    document
+      .getElementById('expenseDisplay')
+      .innerHTML = Utils.formatCurrency(Transaction.expenses())
+    
+      document
+      .getElementById('text-total')
+      .innerHTML = Utils.formatCurrency(Transaction.total())
   }
 }
 
+// Funções úteis para o programa...
 const Utils = {
+
+  // atualiza o formato do valor para BRL - R$000,00
   formatCurrency(value) {
     const signal = Number(value) > 0 ? "" : "-"
+    
+    value = String(value).replace(/\D/g, "")
+    value = Number(value) / 100
+    value = value.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL"
+    })
+
+    return signal + value
   },
 }
 
@@ -76,6 +122,8 @@ const Utils = {
 transactions.forEach(transaction => {
   DOM.addTransaction(transaction)
 })
+
+DOM.updateBalance()
 
 // CHANGE COLOR
 
