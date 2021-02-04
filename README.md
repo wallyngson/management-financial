@@ -1,9 +1,9 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="./assets/logo.svg" alt="Bot logo"></a>
+ <img width=200px height=200px background-color="black" src="./assets/logo.svg" alt="Bot logo"></a>
 </p>
 
-<h3 align="center" style="backgroun-color: black;">dev.finance$</h3>
+<h3 align="center">dev.finance$</h3>
 
 <div align="center">
 
