@@ -63,16 +63,12 @@
         </section>
 
         <section id="transaction">
+            <h2>Transações</h2>
+
             <h2 class="sr-only">Transações</h2>
-
-            <a  href="#" 
-                onclick="modalChange.open()"
-                class="button new">+ Nova transação
-            </a>
-
             <table id="data-table">
                 <thead>
-                    <tr>
+                    <tr id="shadow">
                         <th>Descrição</th>
                         <th>Valor</th>
                         <th>Data</th>
@@ -83,6 +79,33 @@
                 <tbody id="transaction">
                 </tbody>
             </table>
+        </section>
+
+        <section id="transaction-container">
+            
+            <div class="wrapper">
+                <div class="transitions-wrapper" onclick="SelectBox.showOptions()">
+                    <ul class="defaut">
+                        <li>
+                            <div class="title-wrapper">
+                                <p id="default-title">Nova transação</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="list-wrapper">
+                        <li>
+                            <div class="option-income" onclick="modalChange.open()">
+                                <p>Entrada</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="option-expense" onclick="modalChange.open()">
+                                <p>Sáida</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </section>
 
     </main>

@@ -209,7 +209,6 @@ const Form = {
   }
 }
 
-
 const App = {
   init() {
     Transaction.all.forEach((transaction, index) => {
@@ -230,6 +229,9 @@ const App = {
 
 App.init()
 
+
+// ADITIONAL FUNCTIONS
+
 // CHANGE COLOR
 
 const root = document.documentElement
@@ -240,4 +242,15 @@ function changeColor() {
   } else {
     root.classList.remove('dark')
   }
+}
+
+// SELECT BOX
+
+const SelectBox = {
+  
+  showOptions () {
+    document.querySelector('.transitions-wrapper').classList.toggle('active')
+    document.querySelector('.title-wrapper').classList.toggle('active')
+  }
+
 }
