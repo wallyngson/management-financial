@@ -30,7 +30,7 @@ Following RocketSeat's tips...
 
 ## 🎥 Interface <a name = "demo"></a>
 
-![Working](https://media.giphy.com/media/20NLMBm0BkUOwNljwv/giphy.gif)
+![Working]("./assets/interface.png")
 
 ## 🎈 Usage <a name = "usage"></a>
 
