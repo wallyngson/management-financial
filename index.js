@@ -1,10 +1,20 @@
-const modalChange = {
+const ModalIncome = {
   open() {
-    document.querySelector('.modal-overlay').classList.add('active')
+    document.querySelector('.modal-overlay-income').classList.add('active')
   },
   
   close() {
-    document.querySelector('.modal-overlay').classList.remove('active')
+    document.querySelector('.modal-overlay-income').classList.remove('active')
+  }
+}
+
+const ModalExpense = {
+  open() {
+    document.querySelector('.modal-overlay-expense').classList.add('active')
+  },
+  
+  close() {
+    document.querySelector('.modal-overlay-expense').classList.remove('active')
   }
 }
 
@@ -138,6 +148,11 @@ const Utils = {
     value = Number(value) * 100
     return value 
   },
+  
+  formatAmountNegative(value) {
+    value = Number(value) * 100 * -1
+    return value 
+  },
 
   formatDate(date){
     const splittedDate = date.split("-")
@@ -145,10 +160,10 @@ const Utils = {
   },
 }
 
-const Form = {
-  description: document.querySelector('input#description'),
-  amount: document.querySelector('input#amount'),
-  date: document.querySelector('input#date'),
+const FormIncome = {
+  description: document.querySelector('#description-income'),
+  amount: document.querySelector('#amount-income'),
+  date: document.querySelector('#date-income'),
 
   getValues() {
     return {
@@ -164,7 +179,7 @@ const Form = {
       throw new Error("Por favor, preencha todos os campos!")
     }
   },
-  
+
   formatValues() {
     let {
       description,
@@ -192,8 +207,7 @@ const Form = {
     this.date.value = ""
   },
 
-  submit(event) {
-    event.preventDefault()
+  datasIncome() {
 
     try {
       this.validateFields()
@@ -201,12 +215,77 @@ const Form = {
 
       this.saveTransaction(transaction)
       this.clearFields()
-      
-      modalChange.close()
+
+      ModalIncome.close()
+
     } catch (error) {
       alert(error.message)
     }
-  }
+  },
+}
+
+const FormExpense = {
+  description: document.querySelector('#description-expense'),
+  amount: document.querySelector('#amount-expense'),
+  date: document.querySelector('#date-expense'),
+
+  getValues() {
+    return {
+      description: this.description.value,
+      amount: this.amount.value,
+      date: this.date.value,
+    }
+  },
+
+  validateFields() {
+    const { description, amount, date } = this.getValues();
+    if(description.trim() === "" || amount.trim() === "" || date.trim() === ""){
+      throw new Error("Por favor, preencha todos os campos!")
+    }
+  },
+
+  formatValues() {
+    let {
+      description,
+      amount,
+      date
+    } = this.getValues()
+
+    amount = Utils.formatAmountNegative(amount)
+    date = Utils.formatDate(date)
+
+    return {
+      description,
+      amount,
+      date
+    }
+  },
+
+  saveTransaction(transaction) {
+    Transaction.add(transaction)
+  },
+
+  clearFields() {
+    this.description.value = ""
+    this.amount.value = ""
+    this.date.value = ""
+  },
+
+  datasExpense() {
+
+    try {
+      this.validateFields()
+      const transaction = this.formatValues()
+
+      this.saveTransaction(transaction)
+      this.clearFields()
+
+      ModalExpense.close()
+
+    } catch (error) {
+      alert(error.message)
+    }
+  },
 }
 
 const App = {
