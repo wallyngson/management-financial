@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="./assets/logo-black.svg" alt="Bot logo"></a>
+ <img width=200px height=200px src="./assets/logo-black.png" alt="Bot logo"></a>
 </p>
 
 <h3 align="center">dev.finance$</h3>
