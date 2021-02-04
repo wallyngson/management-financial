@@ -30,8 +30,7 @@ Following RocketSeat's tips...
 
 ## 🎥 Interface <a name = "demo"></a>
 
-![Working]<img width=1920px height=1080px src="./assets/interface.png" alt="interface"></a>
-</p>
+<img width=2300px height=1591px src="./assets/interface.png" alt="interface"></a>
 
 ## 🎈 Usage <a name = "usage"></a>
 
