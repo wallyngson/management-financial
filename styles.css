@@ -260,6 +260,10 @@ table td {
     font-weight: normal;
 }
 
+#delete {
+    cursor: pointer;
+}
+
 .expense {
     color: rgba(252, 34, 34, 0.726)
 }

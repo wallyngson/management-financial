@@ -8,26 +8,35 @@ const modalChange = {
   }
 }
 
-const transactions = [
-  {
-    id: 1,
-    descrition: 'Luz',
-    amount: -50000,
-    date: '23/01/2021'
+const Storage = {
+  get() {
+    return JSON.parse(localStorage.getItem("dev.finance:transactions")) || []
   },
-  {
-    id: 2,
-    descrition: 'Website',
-    amount: 51000,
-    date: '24/01/2021'
+  set(transactions) {
+    localStorage.setItem("dev.finance:transactions",
+      JSON.stringify(transactions))
   },
-]
+}
 
 const Transaction = {
+
+  all: Storage.get(),
+
+  add(transaction) {
+    Transaction.all.push(transaction)
+    App.reload()
+  },
+
+  remove(index) {
+    Transaction.all.splice(index, 1)
+
+    App.reload()
+  },
+
   incomes() {
     let income = 0
 
-    transactions.forEach(transaction => {
+    this.all.forEach(transaction => {
       if (transaction.amount > 0) {
         income += transaction.amount
       }
@@ -39,7 +48,7 @@ const Transaction = {
   expenses() {
     let expense = 0
 
-    transactions.forEach(transaction => {
+    this.all.forEach(transaction => {
       if (transaction.amount < 0) {
         expense += transaction.amount
       }
@@ -59,12 +68,13 @@ const DOM = {
   // criando uma nova transação...
   addTransaction(transaction, index) {
     const tr = document.createElement('tr')
-    tr.innerHTML = this.innerHTMLTransaction(transaction) 
+    tr.innerHTML = this.innerHTMLTransaction(transaction, index)
+    tr.dataset.index = index
 
     DOM.transactionContainer.appendChild(tr)
   },
 
-  innerHTMLTransaction(transaction) {
+  innerHTMLTransaction(transaction, index) {
     // definido qual a cor para números negativos e positivos...
     const CSSclass = transaction.amount > 0 ? "income" : "expense"
 
@@ -73,11 +83,14 @@ const DOM = {
 
     // criando uma máscara do HTML...
     const html = `
-      <td class="description">${transaction.descrition}</td>
+      <td class="description">${transaction.description}</td>
       <td class=${CSSclass}>${amount}</td>
       <td class="date">${transaction.date}</td>
       <td>
-        <img src="./assets/minus.svg" alt="">
+        <img onclick="Transaction.remove(${index})" 
+              src="./assets/minus.svg" 
+              alt=""
+              id="delete">
       </td>
     `
 
@@ -93,20 +106,24 @@ const DOM = {
     document
       .getElementById('expenseDisplay')
       .innerHTML = Utils.formatCurrency(Transaction.expenses())
-    
-      document
+
+    document
       .getElementById('text-total')
       .innerHTML = Utils.formatCurrency(Transaction.total())
+  },
+
+  clearTransactions() {
+    DOM.transactionContainer.innerHTML = ""
   }
 }
 
 // Funções úteis para o programa...
 const Utils = {
 
-  // atualiza o formato do valor para BRL - R$000,00
+  // atualiza o formato do valor para BRL - R$000,00 
   formatCurrency(value) {
-    const signal = Number(value) > 0 ? "" : "-"
-    
+    const signal = Number(value) < 0 ? "-" : ""
+
     value = String(value).replace(/\D/g, "")
     value = Number(value) / 100
     value = value.toLocaleString("pt-BR", {
@@ -116,14 +133,102 @@ const Utils = {
 
     return signal + value
   },
+
+  formatAmount(value) {
+    value = Number(value) * 100
+    return value 
+  },
+
+  formatDate(date){
+    const splittedDate = date.split("-")
+    return `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`
+  },
 }
 
-// incluido todos as entradas e saidas...
-transactions.forEach(transaction => {
-  DOM.addTransaction(transaction)
-})
+const Form = {
+  description: document.querySelector('input#description'),
+  amount: document.querySelector('input#amount'),
+  date: document.querySelector('input#date'),
 
-DOM.updateBalance()
+  getValues() {
+    return {
+      description: this.description.value,
+      amount: this.amount.value,
+      date: this.date.value,
+    }
+  },
+
+  validateFields() {
+    const { description, amount, date } = this.getValues();
+    if(description.trim() === "" || amount.trim() === "" || date.trim() === ""){
+      throw new Error("Por favor, preencha todos os campos!")
+    }
+  },
+  
+  formatValues() {
+    let {
+      description,
+      amount,
+      date
+    } = this.getValues()
+
+    amount = Utils.formatAmount(amount)
+    date = Utils.formatDate(date)
+
+    return {
+      description,
+      amount,
+      date
+    }
+  },
+
+  saveTransaction(transaction) {
+    Transaction.add(transaction)
+  },
+
+  clearFields() {
+    this.description.value = ""
+    this.amount.value = ""
+    this.date.value = ""
+  },
+
+  submit(event) {
+    event.preventDefault()
+
+    try {
+      this.validateFields()
+      const transaction = this.formatValues()
+
+      this.saveTransaction(transaction)
+      this.clearFields()
+      
+      modalChange.close()
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+}
+
+
+const App = {
+  init() {
+    Transaction.all.forEach((transaction, index) => {
+      DOM.addTransaction(transaction, index)
+      console.log(index)
+    })
+
+    DOM.updateBalance()
+    Storage.set(Transaction.all)
+
+  },
+
+  reload() {
+    DOM.clearTransactions()
+    App.init()
+  },
+}
+
+App.init()
 
 // CHANGE COLOR
 
@@ -136,10 +241,3 @@ function changeColor() {
     root.classList.remove('dark')
   }
 }
-
-
-
-
-
-
-
