@@ -584,4 +584,9 @@ footer {
     top: 24px;
 }
 
+/* MOON ======================= */
+
+#moon {
+    position: relative;
+}
 @import url('https://css.gg/moon.css');
