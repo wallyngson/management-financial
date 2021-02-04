@@ -87,9 +87,16 @@ html {
 
 /* HEADER ============== */
 
+.theme {
+    background-color: var(--header-color);
+    display: flex;
+    transition: background 0.2s linear;
+    justify-content: flex-end;
+}
+
 header {
     background: var(--header-color);
-    padding: 2rem 0 10rem;
+    padding: 1rem 0 10rem;
     text-align: center;
     display: flex;
     align-items: center;
